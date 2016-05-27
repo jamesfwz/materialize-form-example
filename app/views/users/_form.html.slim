@@ -1,0 +1,20 @@
+.users-form-container
+  = simple_form_for @user do |f|  
+    .row
+      = f.input :first_name, wrapper_html: { class: 'm6 s12' }
+      = f.input :last_name,  wrapper_html: { class: 'm6 s12' }
+    .row
+      = f.input :gender, include_blank: 'Select your gender', wrapper_html: { class: 'm6 s12' }
+      = f.input :types,  include_blank: 'What do you want?', wrapper_html: { class: 'm6 s12' }
+    .row
+      = f.input :avatar, wrapper_html: { class: 'm6 s12' }
+      = f.input :dob, wrapper_html: { class: 'm6 s12' }
+    .row
+      = f.input :is_student, as: :radio_buttons, wrapper_html: { class: 'm6 s12' }
+      = f.input :hobbies, as: :check_boxes, wrapper_html: { class: 'm6 s12' }
+    .row
+      = f.input :private, wrapper_html: { class: 'm6 s12' }
+      = f.input :is_tutor, wrapper: :materialize_boolean, wrapper_html: { class: 'm6 s12 ' }
+
+    = f.button :submit
+

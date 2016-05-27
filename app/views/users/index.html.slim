@@ -1,0 +1,20 @@
+#users-index-container
+  .row
+    .col.s8
+      h1 Materialize Form
+    .col.s4
+      .right-align
+        br
+        p = link_to content_tag(:i, 'add', class: 'material-icons'), new_user_path, class: 'btn-floating waves-effect waves-light btn-large red'
+  .row
+    - @users.each do |user|
+      .col.l3.m6.s12
+        .card
+          .card-image
+            = image_tag(user.avatar.url(:thumb))
+            span.card-title = user.name
+          .card-content
+            p Gender: #{user.gender_text}
+          .card-action
+            = link_to 'Edit information', [:edit, user]
+  

@@ -1,0 +1,12 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: materializecss_form_development
+
+test:
+  <<: *default
+  database: materializecss_form_test
