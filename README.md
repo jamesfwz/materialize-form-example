@@ -2,48 +2,61 @@
 
 This is a generator gem for [SimpleForm](https://github.com/plataformatec/simple_form) to make it works with [MaterializeCSS](http://materializecss.com/).
 
-## Installation
+There is an example application available on Heroku that demonstrate various features of Materialize::Form. You can view here: http://materialize-form.herokuapp.com/. To see the [Source Code](https://github.com/jamesfwz/materialize-form-example)
+
+Haven't install [SimpleForm](https://github.com/plataformatec/simple_form) and [Materialize SASS](https://github.com/mkhairi/materialize-sass)? Please follow this instruction:
 
 Add this line to your application's Gemfile:
 
-```ruby
-gem 'simple_form', "~> 3.2.1"
-gem 'materialize-sass', "~> 0.97.6"
-gem 'materialize-form'
+```
+gem 'simple_form'
+gem 'materialize-sass'
 ```
 
-And then run the bundler and restart your server to make the files available through the pipeline:
-```console
+```
 $ bundle install
+$ rails generate simple_form:install
 ```
 
-Run the generator:
-```console
-$ rails generate simple_form:materialize:install
+Require Materialize javascripts in app/assets/javascripts/application.js:
+
 ```
-
-Import Materialize Form javascript in `app/assets/javascripts/application.js`:
-
-```js
 //= require jquery
 //= require materialize-sprockets
-//= require materialize-form
-
-$(document).ready(function() {
-  window.materializeForm.init()
-});
 ```
 
-Import Materialize styles in `app/assets/stylesheets/application.scss`:
+Import Materialize styles in app/assets/stylesheets/application.scss:
 
-```scss
+```
 @import "materialize";
 ```
 
 **NOTE:** If you have just generated a new Rails application, it  may come with a `.css` file instead. If this file exists, it will be served instead of Sass, so remove it.
 
-```console
+```
 $ rm app/assets/stylesheets/application.css
+```
+
+## Installation 
+
+### Step 1:
+Add this line to your application's Gemfile:
+```
+gem 'materialize-form'
+```
+
+### Step 2:
+Run the bundler and restart your server to make the files available through the pipeline and run the generator
+```
+$ bundle install
+$ rails generate simple_form:materialize:install
+```
+
+### Step 3:
+Import Materialize Form javascript in `app/assets/javascripts/application.js`:
+
+```
+//= require materialize-form
 ```
 
 ## Usage
@@ -54,7 +67,8 @@ To start using Materialize Form you just have to use the helper it provides:
 ```slim
 = simple_form_for @user do |f|  
   .row
-    = f.input :name, wrapper_html: { class: 'm6 s12' }
+    = f.input :first_name, wrapper_html: { class: 'm6 s12' }
+    = f.input :last_name, wrapper_html: { class: 'm6 s12' }
 
   = f.button :submit
 ```
@@ -62,7 +76,7 @@ To start using Materialize Form you just have to use the helper it provides:
 #### Selectbox
 
 ```slim
-  = f.input :gender, include_blank: 'Select your gender', wrapper_html: { class: 'm6 s12' }
+= f.association :country, include_blank: 'What are your country?', wrapper_html: { class: 'm6 s12' }
 ```
 
 #### File Input
@@ -70,7 +84,7 @@ To start using Materialize Form you just have to use the helper it provides:
 File input will be generated automatically if the type of the field is attachment.
 
 ```slim
-  = f.input :avatar, wrapper_html: { class: 'm6 s12' }
+= f.input :avatar, wrapper_html: { class: 'm6 s12' }
 ```
 
 #### Date Input
@@ -78,39 +92,39 @@ File input will be generated automatically if the type of the field is attachmen
 Date picker will be generated automatically if the type of the field is date.
 
 ```slim
-  = f.input :dob, wrapper_html: { class: 'm6 s12' }
+= f.input :dob, wrapper_html: { class: 'm6 s12' }
 ```
 
 #### Checkboxes
 ```slim
-  = f.input :hobbies, as: :check_boxes, wrapper_html: { class: 'm6 s12' }
+= f.association :hobbies, as: :check_boxes, wrapper_html: { class: 'm6 s12' }
 ```
 
 #### Multi-Selectbox
 ```slim
-  = f.input :hobbies,  include_blank: 'What are your hobbies?', wrapper_html: { class: 'm6 s12' }
+= f.association :hobbies, include_blank: 'What are your hobbies?', wrapper_html: { class: 'm6 s12' }
 ```
 
 #### Toggle Boolean
 ```slim
-  = f.input :featured, wrapper_html: { class: 'm6 s12' }
+= f.input :featured, wrapper_html: { class: 'm6 s12' }
 ```
 
 #### Boolean
 ```slim
-  = f.input :featured, wrapper: :materialize_boolean, wrapper_html: { class: 'm6 s12 ' }
+= f.input :featured, wrapper: :materialize_boolean, wrapper_html: { class: 'm6 s12 ' }
 ```
 
 #### Radio Buttons
 ```slim
-  = f.input :featured, as: :radio_buttons, wrapper_html: { class: 'm6 s12' }
+= f.input :featured, as: :radio_buttons, wrapper_html: { class: 'm6 s12' }
 ```
 
 ## Working with [Nested Form](https://github.com/ryanb/nested_form)
 
 In `app/assets/javascripts/application.js`:
 
-```js
+```
 $(document).on('nested:fieldAdded', function(event){
   window.materializeForm.init()
 })

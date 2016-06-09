@@ -33,8 +33,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'slim'
-gem 'simple_form', "~> 3.2.1"
-gem 'materialize-sass', "~> 0.97.6"
+gem 'simple_form'
+gem 'materialize-sass'
 gem 'materialize-form'
 gem 'enumerize'
 gem 'paperclip'
